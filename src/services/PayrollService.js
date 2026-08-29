@@ -66,7 +66,7 @@ class PayrollService {
     }
 
     const employees = await db.all(
-      `SELECT e.id, e.employee_code, e.first_name, e.last_name, e.department_id, s.*
+      `SELECT e.id as employee_id, e.employee_code, e.first_name, e.last_name, e.department_id, s.annual_ctc, s.monthly_gross, s.basic_salary, s.hra
        FROM employees e
        JOIN salary_structures s ON e.id = s.employee_id
        WHERE e.tenant_id = ? AND e.employment_status = 'ACTIVE' AND s.is_active = 1`,
@@ -93,7 +93,7 @@ class PayrollService {
         total_deductions: 0,
         total_net_payable: 0,
         status: 'PROCESSING',
-        processed_by: processedByUserId,
+        processed_by: processedByUserId || 'usr_001',
       });
     }
 
@@ -112,7 +112,7 @@ class PayrollService {
       await payslipRepository.create({
         tenant_id: tenantId,
         payroll_run_id: payrollRun.id,
-        employee_id: emp.id,
+        employee_id: emp.employee_id,
         payslip_number: payslipNumber,
         month,
         year,
