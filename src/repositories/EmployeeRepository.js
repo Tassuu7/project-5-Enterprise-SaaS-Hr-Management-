@@ -8,7 +8,7 @@ const db = require('../database/connection');
 
 class EmployeeRepository extends BaseRepository {
   constructor() {
-    super('employees', 'emp');
+    super('employees', 'e');
   }
 
   async findDetailed(filter = {}, options = {}) {
@@ -16,18 +16,19 @@ class EmployeeRepository extends BaseRepository {
     const params = [];
     const keys = Object.keys(filter);
     if (keys.length > 0) {
-      const whereClauses = keys.map((k) => `\${k.includes('.') ? k : 'employees.' + k} = ?`).join(' AND ');
+      const whereClauses = keys.map((k) => (k.includes('.') ? k : 'e.' + k) + ' = ?').join(' AND ');
       sql += (sql.includes('WHERE') ? ' AND ' : ' WHERE ') + whereClauses;
       params.push(...Object.values(filter));
     }
     if (options.orderBy) {
-      sql += ` ORDER BY \${options.orderBy} \${options.orderDirection === 'DESC' ? 'DESC' : 'ASC'}`;
+      const dir = options.orderDirection === 'DESC' ? 'DESC' : 'ASC';
+      sql += ' ORDER BY ' + options.orderBy + ' ' + dir;
     }
     if (options.limit) {
-      sql += ` LIMIT ?`;
+      sql += ' LIMIT ?';
       params.push(parseInt(options.limit, 10));
       if (options.offset) {
-        sql += ` OFFSET ?`;
+        sql += ' OFFSET ?';
         params.push(parseInt(options.offset, 10));
       }
     }

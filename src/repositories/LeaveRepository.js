@@ -8,7 +8,7 @@ const db = require('../database/connection');
 
 class LeaveRepository extends BaseRepository {
   constructor() {
-    super('leave_requests', 'lvrq');
+    super('leave_requests', 'lr');
   }
 
   async findDetailed(filter = {}, options = {}) {
@@ -16,18 +16,19 @@ class LeaveRepository extends BaseRepository {
     const params = [];
     const keys = Object.keys(filter);
     if (keys.length > 0) {
-      const whereClauses = keys.map((k) => `\${k.includes('.') ? k : 'leave_requests.' + k} = ?`).join(' AND ');
+      const whereClauses = keys.map((k) => (k.includes('.') ? k : 'lr.' + k) + ' = ?').join(' AND ');
       sql += (sql.includes('WHERE') ? ' AND ' : ' WHERE ') + whereClauses;
       params.push(...Object.values(filter));
     }
     if (options.orderBy) {
-      sql += ` ORDER BY \${options.orderBy} \${options.orderDirection === 'DESC' ? 'DESC' : 'ASC'}`;
+      const dir = options.orderDirection === 'DESC' ? 'DESC' : 'ASC';
+      sql += ' ORDER BY ' + options.orderBy + ' ' + dir;
     }
     if (options.limit) {
-      sql += ` LIMIT ?`;
+      sql += ' LIMIT ?';
       params.push(parseInt(options.limit, 10));
       if (options.offset) {
-        sql += ` OFFSET ?`;
+        sql += ' OFFSET ?';
         params.push(parseInt(options.offset, 10));
       }
     }
