@@ -1,0 +1,13 @@
+[2026-08-29T09:26:29.125Z] [INFO] Initializing WorkSphere Enterprise HRMS database...
+[2026-08-29T09:26:29.127Z] [INFO] Starting Enterprise Database Schema Migration...
+[2026-08-29T09:26:29.130Z] [INFO] SQLite Database connected successfully at C:\Users\shaik\OneDrive\Desktop\project-5\storage\database.sqlite
+[2026-08-29T09:26:29.144Z] [INFO] Database Schema Migration completed successfully. All 35 relational tables created.
+[2026-08-29T09:26:29.146Z] [INFO] Starting Enterprise Master Seeder execution...
+[2026-08-29T09:26:29.249Z] [INFO] Enterprise Master Seeder execution finished successfully.
+[2026-08-29T09:26:29.254Z] [INFO] ========================================================
+[2026-08-29T09:26:29.255Z] [INFO]  WorkSphere Enterprise HRMS v4.2.0 running!
+[2026-08-29T09:26:29.256Z] [INFO]  Access URL: http://127.0.0.1:3000
+[2026-08-29T09:26:29.257Z] [INFO]  API Health: http://127.0.0.1:3000/api/v1/health
+[2026-08-29T09:26:29.258Z] [INFO]  Environment: development
+[2026-08-29T09:26:29.259Z] [INFO] ========================================================
+[2026-08-29T09:27:10.036Z] [DEBUG] [EventBus] Emitting event: USER_LOGGED_IN | {"eventId":"evt_1787995630036_tyotw"}

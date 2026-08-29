@@ -76,7 +76,7 @@ npm install
 ### 2. Environment Configuration
 ```bash
 # Copy template configuration
-copy .env.example .env
+copy example.env .env
 ```
 
 ### 3. Launch Enterprise Server

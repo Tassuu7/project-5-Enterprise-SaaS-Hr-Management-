@@ -1,24 +1,24 @@
 {
   "metrics": {
-    "total_loc": 65643,
-    "total_sloc": 54129,
+    "total_loc": 70268,
+    "total_sloc": 58754,
     "total_blank": 6419,
     "total_comment": 5095,
     "file_counts": {
       "Python Script": 1,
-      "JSON Config/Lockfile": 2,
+      "JSON Config/Lockfile": 3,
       "Markdown Documentation": 11,
       "JavaScript": 174,
       "CSS Stylesheet": 14,
       "HTML5 Template": 15
     },
     "module_loc": {
-      "root": 596,
+      "root": 5215,
       "docs": 3390,
-      "src": 54139,
+      "src": 54145,
       "tests": 7518
     },
-    "total_files": 217,
+    "total_files": 218,
     "files": [
       {
         "path": "measure.py",
@@ -27,9 +27,15 @@
         "type": "Python Script"
       },
       {
+        "path": "metrics_report.json",
+        "lines": 1405,
+        "sloc": 1405,
+        "type": "JSON Config/Lockfile"
+      },
+      {
         "path": "package-lock.json",
-        "lines": 30,
-        "sloc": 30,
+        "lines": 3244,
+        "sloc": 3244,
         "type": "JSON Config/Lockfile"
       },
       {
@@ -1084,8 +1090,8 @@
       },
       {
         "path": "src\\utils\\taxCalculator.js",
-        "lines": 33,
-        "sloc": 22,
+        "lines": 39,
+        "sloc": 28,
         "type": "JavaScript"
       },
       {
@@ -1328,7 +1334,7 @@
     "1_min_50000_loc": {
       "title": "Minimum 50,000+ Production LOC",
       "passed": true,
-      "value": "65,643 LOC"
+      "value": "70,268 LOC"
     },
     "2_git_repository": {
       "title": "Git-based Repository",
@@ -1337,8 +1343,8 @@
     },
     "3_at_least_10_commits": {
       "title": "At Least 10 Commits",
-      "passed": false,
-      "value": "0 commits"
+      "passed": true,
+      "value": "19 commits"
     },
     "4_at_least_4_pull_requests": {
       "title": "At Least 4 Pull Requests / Branches",

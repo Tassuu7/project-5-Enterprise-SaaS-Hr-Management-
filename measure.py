@@ -211,10 +211,11 @@ def verify_all_requirements(metrics):
     env_gitignored = False
     if gitignore.exists() and '.env' in gitignore.read_text(encoding='utf-8'):
         env_gitignored = True
+    has_no_raw_env = not (ROOT_DIR / '.env').exists()
     results['12_no_sensitive_data'] = {
         'title': 'No Sensitive Data / .env Gitignored',
-        'passed': env_gitignored,
-        'value': '.env gitignored, .env.example template present'
+        'passed': env_gitignored and has_no_raw_env,
+        'value': '.env gitignored, example.env template provided'
     }
 
     # 13. Authentic Architecture
