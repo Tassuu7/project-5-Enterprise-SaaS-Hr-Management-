@@ -1,16 +1,25 @@
-/**
- * WorkSphere Enterprise HRMS - HR Service Desk & Ticketing Client Logic
- */
 document.addEventListener('DOMContentLoaded', () => {
-  console.log('Initialized module: HR Service Desk & Ticketing');
-  const container = document.getElementById('module-container');
-  if (container) {
-    container.innerHTML = `
-      <div style="padding: 20px; text-align: center;">
-        <div style="font-size: 32px; margin-bottom: 12px;">✅</div>
-        <h3>HR Service Desk & Ticketing Ready & Connected</h3>
-        <p style="color: var(--text-muted); margin-top: 6px;">Module services and API endpoints are synchronized.</p>
-      </div>
-    `;
+  const form = document.getElementById('new-ticket-form');
+  if (form) {
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const cat = document.getElementById('tkt-category').value;
+      const sub = document.getElementById('tkt-subject').value;
+      const prio = document.getElementById('tkt-priority').value;
+      const tbody = document.getElementById('tickets-tbody');
+      if (!tbody) return;
+      
+      const row = document.createElement('tr');
+      row.innerHTML = `
+        <td><code>TKT-${Date.now().toString().slice(-6)}</code></td>
+        <td>${cat}</td>
+        <td>${sub}</td>
+        <td><span class="badge badge-warning">${prio}</span></td>
+        <td><span class="badge badge-primary">OPEN</span></td>
+      `;
+      tbody.prepend(row);
+      app.showToast('Ticket submitted successfully!', 'success');
+      document.getElementById('tkt-subject').value = '';
+    });
   }
 });

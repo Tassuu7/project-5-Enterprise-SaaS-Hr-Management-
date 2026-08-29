@@ -3,139 +3,85 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Organizational Hierarchy Tree - WorkSphere Enterprise</title>
+  <title>Org Hierarchy Tree - WorkSphere Enterprise HRMS</title>
   <link rel="stylesheet" href="/css/main.css">
   <link rel="stylesheet" href="/css/components.css">
+  <style>
+    .tree-container { display:flex; flex-direction:column; align-items:center; padding:30px 10px; overflow-x:auto; }
+    .tree-node { background:var(--bg-glass); backdrop-filter:blur(16px); border:1px solid var(--border-glass); border-radius:var(--radius-lg); padding:18px 24px; min-width:260px; text-align:center; box-shadow:var(--shadow-md); transition:all var(--transition-fast); position:relative; }
+    .tree-node:hover { transform:translateY(-4px); border-color:var(--color-primary-500); box-shadow:var(--shadow-glow); }
+    .tree-node-root { border-color:var(--color-primary-500); background:linear-gradient(135deg, rgba(99,102,241,0.15), rgba(30,41,59,0.95)); }
+    .tree-avatar { width:52px; height:52px; border-radius:50%; margin:0 auto 12px; border:2px solid var(--color-teal-500); }
+    .tree-name { font-weight:700; font-size:16px; color:var(--text-primary); }
+    .tree-title { font-size:13px; color:var(--color-teal-500); font-weight:600; margin-top:2px; }
+    .tree-dept { font-size:11px; color:var(--text-muted); margin-top:4px; }
+    .tree-connector-v { width:2px; height:36px; background:var(--color-primary-500); margin:0 auto; }
+    .tree-branch { display:flex; justify-content:center; gap:24px; flex-wrap:wrap; margin-top:24px; }
+  </style>
 </head>
 <body>
   <div class="app-wrapper">
-    
-      <aside class="sidebar">
-        <div class="sidebar-header">
-          <div class="brand-logo">W</div>
-          <div>
-            <div class="brand-title">WorkSphere</div>
-            <div class="brand-subtitle">Enterprise HRMS</div>
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <div class="brand-logo">W</div>
+        <div>
+          <div class="brand-title">WorkSphere</div>
+          <div class="brand-subtitle">Enterprise HRMS</div>
+        </div>
+      </div>
+      <ul class="nav-menu">
+        <li class="nav-item"><a href="/dashboard" class="nav-link"><span class="nav-icon">📊</span><span>Executive Dashboard</span></a></li>
+        <li class="nav-item"><a href="/employees" class="nav-link"><span class="nav-icon">👥</span><span>Employees Directory</span></a></li>
+        <li class="nav-item"><a href="/orgchart" class="nav-link active"><span class="nav-icon">🌳</span><span>Org Hierarchy Tree</span></a></li>
+        <li class="nav-item"><a href="/attendance" class="nav-link"><span class="nav-icon">⏱️</span><span>Time & Attendance</span></a></li>
+        <li class="nav-item"><a href="/leaves" class="nav-link"><span class="nav-icon">📅</span><span>Leaves & Absence</span></a></li>
+        <li class="nav-item"><a href="/payroll" class="nav-link"><span class="nav-icon">💳</span><span>Payroll Engine</span></a></li>
+        <li class="nav-item"><a href="/recruitment" class="nav-link"><span class="nav-icon">🎯</span><span>Recruitment ATS</span></a></li>
+        <li class="nav-item"><a href="/performance" class="nav-link"><span class="nav-icon">⭐</span><span>Performance OKRs</span></a></li>
+        <li class="nav-item"><a href="/helpdesk" class="nav-link"><span class="nav-icon">🎫</span><span>HR Service Desk</span></a></li>
+        <li class="nav-item"><a href="/analytics" class="nav-link"><span class="nav-icon">📈</span><span>Workforce Analytics</span></a></li>
+        <li class="nav-item"><a href="/documents" class="nav-link"><span class="nav-icon">📁</span><span>Document Vault</span></a></li>
+        <li class="nav-item"><a href="/audit-logs" class="nav-link"><span class="nav-icon">🛡️</span><span>Security Audit Trail</span></a></li>
+        <li class="nav-item"><a href="/settings" class="nav-link"><span class="nav-icon">⚙️</span><span>Tenant Settings</span></a></li>
+      </ul>
+      <div class="sidebar-footer">
+        <div class="user-snippet">
+          <img id="current-user-avatar" class="user-avatar-sm" src="https://ui-avatars.com/api/?name=Alexander+Sterling&background=1E3A8A&color=fff" alt="">
+          <div class="user-info-text">
+            <div id="current-user-name" class="user-name">Alexander Sterling</div>
+            <div id="current-user-role" class="user-role-badge">SUPER ADMIN</div>
           </div>
         </div>
-        <ul class="nav-menu">
-          
-          <li class="nav-item">
-            <a href="/dashboard" class="nav-link">
-              <span class="nav-icon">📊</span>
-              <span>Dashboard</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="/employees" class="nav-link">
-              <span class="nav-icon">👥</span>
-              <span>Employees</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="/orgchart" class="nav-link active">
-              <span class="nav-icon">🌳</span>
-              <span>Org Chart</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="/attendance" class="nav-link">
-              <span class="nav-icon">⏱️</span>
-              <span>Attendance</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="/leaves" class="nav-link">
-              <span class="nav-icon">📅</span>
-              <span>Leaves & Absence</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="/payroll" class="nav-link">
-              <span class="nav-icon">💳</span>
-              <span>Payroll & Slips</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="/recruitment" class="nav-link">
-              <span class="nav-icon">🎯</span>
-              <span>Recruitment ATS</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="/performance" class="nav-link">
-              <span class="nav-icon">⭐</span>
-              <span>Performance OKR</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="/helpdesk" class="nav-link">
-              <span class="nav-icon">🎫</span>
-              <span>HR Helpdesk</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="/analytics" class="nav-link">
-              <span class="nav-icon">📈</span>
-              <span>BI Analytics</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="/documents" class="nav-link">
-              <span class="nav-icon">📁</span>
-              <span>Documents Vault</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="/audit-logs" class="nav-link">
-              <span class="nav-icon">🛡️</span>
-              <span>Audit Trail</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="/settings" class="nav-link">
-              <span class="nav-icon">⚙️</span>
-              <span>SaaS Settings</span>
-            </a>
-          </li>
-        </ul>
-        <div class="sidebar-footer">
-          <div class="user-snippet">
-            <img id="current-user-avatar" class="user-avatar-sm" src="https://ui-avatars.com/api/?name=Admin+User&background=1E3A8A&color=fff" alt="User Avatar">
-            <div class="user-info-text">
-              <div id="current-user-name" class="user-name">Alexander Sterling</div>
-              <div id="current-user-role" class="user-role-badge">SUPER ADMIN</div>
-            </div>
-          </div>
-          <button class="btn btn-sm btn-secondary" onclick="app.logout()" title="Logout">🚪</button>
-        </div>
-      </aside>
+        <button class="btn btn-sm btn-secondary" onclick="app.logout()" title="Logout">🚪</button>
+      </div>
+    </aside>
     <main class="main-content">
-      
-        <header class="topbar">
-          <div class="page-headline">
-            <h1>Organizational Hierarchy Tree</h1>
-          </div>
-          <div class="topbar-actions">
-            <button class="btn btn-secondary btn-sm" onclick="app.toggleTheme()">🌓 Theme</button>
-            <a href="/employees" class="btn btn-primary btn-sm">+ New Employee</a>
-          </div>
-        </header>
+      <header class="topbar">
+        <div class="page-headline">
+          <h1>Interactive Organizational Hierarchy Tree</h1>
+        </div>
+        <div class="topbar-actions">
+          <button class="btn btn-secondary btn-sm" onclick="app.toggleTheme()">🌓 Theme</button>
+          <a href="/employees" class="btn btn-primary btn-sm">+ Add Employee</a>
+        </div>
+      </header>
       <div class="content-container">
-        <div class="card">
+        <div class="card" style="margin-bottom: 24px;">
           <div class="card-header">
-            <div class="card-title">Organizational Hierarchy Tree</div>
+            <div>
+              <div class="card-title">Corporate Leadership & Department Reporting Topology</div>
+              <p style="font-size: 13px; color: var(--text-secondary); margin-top: 4px;">Dynamic executive-to-specialist reporting tree mapped from live database relations.</p>
+            </div>
+            <span class="badge badge-success">100% Synced</span>
           </div>
-          <div id="module-container">
-            <p style="color:var(--text-secondary);">Enterprise Module Active. Connecting to backend services...</p>
+          <div id="orgchart-viewport" class="tree-container">
+            <p style="color:var(--text-muted);">Rendering organizational topology...</p>
           </div>
         </div>
       </div>
     </main>
   </div>
-
   <script src="/js/app.js"></script>
-  <script src="/js/charts.js"></script>
   <script src="/js/orgchart.js"></script>
 </body>
 </html>

@@ -1,16 +1,20 @@
-/**
- * WorkSphere Enterprise HRMS - Executive Workforce Intelligence Client Logic
- */
-document.addEventListener('DOMContentLoaded', () => {
-  console.log('Initialized module: Executive Workforce Intelligence');
-  const container = document.getElementById('module-container');
-  if (container) {
-    container.innerHTML = `
-      <div style="padding: 20px; text-align: center;">
-        <div style="font-size: 32px; margin-bottom: 12px;">✅</div>
-        <h3>Executive Workforce Intelligence Ready & Connected</h3>
-        <p style="color: var(--text-muted); margin-top: 6px;">Module services and API endpoints are synchronized.</p>
-      </div>
-    `;
+document.addEventListener('DOMContentLoaded', async () => {
+  try {
+    const summary = await app.request('/analytics/summary');
+    const data = summary.data;
+
+    const deptLabels = data.charts.departmentDistribution.map(d => d.name);
+    const deptCounts = data.charts.departmentDistribution.map(d => d.employee_count);
+    if (document.getElementById('dept-analytics-chart')) {
+      EnterpriseCharts.drawBarChart('dept-analytics-chart', deptLabels, deptCounts, ['#6366f1', '#14b8a6', '#f59e0b', '#0ea5e9']);
+    }
+
+    const genderLabels = data.charts.genderDiversity.map(g => g.gender);
+    const genderCounts = data.charts.genderDiversity.map(g => g.count);
+    if (document.getElementById('gender-analytics-chart')) {
+      EnterpriseCharts.drawDonutChart('gender-analytics-chart', genderLabels, genderCounts, ['#6366f1', '#14b8a6', '#f43f5e']);
+    }
+  } catch (err) {
+    console.error(err);
   }
 });

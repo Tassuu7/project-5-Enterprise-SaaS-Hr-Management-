@@ -3,139 +3,106 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Recruitment ATS & Pipeline - WorkSphere Enterprise</title>
+  <title>Recruitment ATS - WorkSphere Enterprise HRMS</title>
   <link rel="stylesheet" href="/css/main.css">
   <link rel="stylesheet" href="/css/components.css">
+  <style>
+    .kanban-board { display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:16px; overflow-x:auto; }
+    .kanban-col { background:var(--bg-surface); border:1px solid var(--border-glass); border-radius:var(--radius-lg); padding:16px; min-height:440px; }
+    .kanban-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:14px; font-size:14px; font-weight:700; color:var(--text-primary); }
+    .candidate-card { background:var(--bg-surface-elevated); border:1px solid var(--border-glass); border-radius:var(--radius-md); padding:14px; margin-bottom:12px; box-shadow:var(--shadow-sm); transition:all var(--transition-fast); }
+    .candidate-card:hover { transform:translateY(-2px); border-color:var(--color-primary-500); }
+  </style>
 </head>
 <body>
   <div class="app-wrapper">
-    
-      <aside class="sidebar">
-        <div class="sidebar-header">
-          <div class="brand-logo">W</div>
-          <div>
-            <div class="brand-title">WorkSphere</div>
-            <div class="brand-subtitle">Enterprise HRMS</div>
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <div class="brand-logo">W</div>
+        <div>
+          <div class="brand-title">WorkSphere</div>
+          <div class="brand-subtitle">Enterprise HRMS</div>
+        </div>
+      </div>
+      <ul class="nav-menu">
+        <li class="nav-item"><a href="/dashboard" class="nav-link"><span class="nav-icon">📊</span><span>Executive Dashboard</span></a></li>
+        <li class="nav-item"><a href="/employees" class="nav-link"><span class="nav-icon">👥</span><span>Employees Directory</span></a></li>
+        <li class="nav-item"><a href="/orgchart" class="nav-link"><span class="nav-icon">🌳</span><span>Org Hierarchy Tree</span></a></li>
+        <li class="nav-item"><a href="/attendance" class="nav-link"><span class="nav-icon">⏱️</span><span>Time & Attendance</span></a></li>
+        <li class="nav-item"><a href="/leaves" class="nav-link"><span class="nav-icon">📅</span><span>Leaves & Absence</span></a></li>
+        <li class="nav-item"><a href="/payroll" class="nav-link"><span class="nav-icon">💳</span><span>Payroll Engine</span></a></li>
+        <li class="nav-item"><a href="/recruitment" class="nav-link active"><span class="nav-icon">🎯</span><span>Recruitment ATS</span></a></li>
+        <li class="nav-item"><a href="/performance" class="nav-link"><span class="nav-icon">⭐</span><span>Performance OKRs</span></a></li>
+        <li class="nav-item"><a href="/helpdesk" class="nav-link"><span class="nav-icon">🎫</span><span>HR Service Desk</span></a></li>
+        <li class="nav-item"><a href="/analytics" class="nav-link"><span class="nav-icon">📈</span><span>Workforce Analytics</span></a></li>
+        <li class="nav-item"><a href="/documents" class="nav-link"><span class="nav-icon">📁</span><span>Document Vault</span></a></li>
+        <li class="nav-item"><a href="/audit-logs" class="nav-link"><span class="nav-icon">🛡️</span><span>Security Audit Trail</span></a></li>
+        <li class="nav-item"><a href="/settings" class="nav-link"><span class="nav-icon">⚙️</span><span>Tenant Settings</span></a></li>
+      </ul>
+      <div class="sidebar-footer">
+        <div class="user-snippet">
+          <img id="current-user-avatar" class="user-avatar-sm" src="https://ui-avatars.com/api/?name=Alexander+Sterling&background=1E3A8A&color=fff" alt="">
+          <div class="user-info-text">
+            <div id="current-user-name" class="user-name">Alexander Sterling</div>
+            <div id="current-user-role" class="user-role-badge">SUPER ADMIN</div>
           </div>
         </div>
-        <ul class="nav-menu">
-          
-          <li class="nav-item">
-            <a href="/dashboard" class="nav-link">
-              <span class="nav-icon">📊</span>
-              <span>Dashboard</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="/employees" class="nav-link">
-              <span class="nav-icon">👥</span>
-              <span>Employees</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="/orgchart" class="nav-link">
-              <span class="nav-icon">🌳</span>
-              <span>Org Chart</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="/attendance" class="nav-link">
-              <span class="nav-icon">⏱️</span>
-              <span>Attendance</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="/leaves" class="nav-link">
-              <span class="nav-icon">📅</span>
-              <span>Leaves & Absence</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="/payroll" class="nav-link">
-              <span class="nav-icon">💳</span>
-              <span>Payroll & Slips</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="/recruitment" class="nav-link active">
-              <span class="nav-icon">🎯</span>
-              <span>Recruitment ATS</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="/performance" class="nav-link">
-              <span class="nav-icon">⭐</span>
-              <span>Performance OKR</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="/helpdesk" class="nav-link">
-              <span class="nav-icon">🎫</span>
-              <span>HR Helpdesk</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="/analytics" class="nav-link">
-              <span class="nav-icon">📈</span>
-              <span>BI Analytics</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="/documents" class="nav-link">
-              <span class="nav-icon">📁</span>
-              <span>Documents Vault</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="/audit-logs" class="nav-link">
-              <span class="nav-icon">🛡️</span>
-              <span>Audit Trail</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="/settings" class="nav-link">
-              <span class="nav-icon">⚙️</span>
-              <span>SaaS Settings</span>
-            </a>
-          </li>
-        </ul>
-        <div class="sidebar-footer">
-          <div class="user-snippet">
-            <img id="current-user-avatar" class="user-avatar-sm" src="https://ui-avatars.com/api/?name=Admin+User&background=1E3A8A&color=fff" alt="User Avatar">
-            <div class="user-info-text">
-              <div id="current-user-name" class="user-name">Alexander Sterling</div>
-              <div id="current-user-role" class="user-role-badge">SUPER ADMIN</div>
+        <button class="btn btn-sm btn-secondary" onclick="app.logout()" title="Logout">🚪</button>
+      </div>
+    </aside>
+    <main class="main-content">
+      <header class="topbar">
+        <div class="page-headline">
+          <h1>Applicant Tracking System (ATS) Pipeline</h1>
+        </div>
+        <div class="topbar-actions">
+          <button class="btn btn-secondary btn-sm" onclick="app.toggleTheme()">🌓 Theme</button>
+          <a href="/employees" class="btn btn-primary btn-sm">+ Add Employee</a>
+        </div>
+      </header>
+      <div class="content-container">
+        <div class="kanban-board">
+          <div class="kanban-col">
+            <div class="kanban-header"><span>📥 Sourced / Applied</span> <span class="badge badge-primary">2</span></div>
+            <div class="candidate-card">
+              <strong>Julian Archer</strong>
+              <div style="font-size:12px; color:var(--text-muted); margin-top:2px;">Principal Architect • 8 yrs exp</div>
+              <span class="badge badge-info" style="margin-top:8px;">Fit Index: 94%</span>
+            </div>
+            <div class="candidate-card">
+              <strong>Maya Lin</strong>
+              <div style="font-size:12px; color:var(--text-muted); margin-top:2px;">Senior UX Lead • 6 yrs exp</div>
+              <span class="badge badge-info" style="margin-top:8px;">Fit Index: 96%</span>
             </div>
           </div>
-          <button class="btn btn-sm btn-secondary" onclick="app.logout()" title="Logout">🚪</button>
-        </div>
-      </aside>
-    <main class="main-content">
-      
-        <header class="topbar">
-          <div class="page-headline">
-            <h1>Recruitment ATS & Pipeline</h1>
+          <div class="kanban-col">
+            <div class="kanban-header"><span>🔍 Technical Assessment</span> <span class="badge badge-warning">1</span></div>
+            <div class="candidate-card">
+              <strong>Carlos Rodriguez</strong>
+              <div style="font-size:12px; color:var(--text-muted); margin-top:2px;">Staff Cloud Engineer • 7 yrs exp</div>
+              <span class="badge badge-warning" style="margin-top:8px;">Score: 4.8 / 5</span>
+            </div>
           </div>
-          <div class="topbar-actions">
-            <button class="btn btn-secondary btn-sm" onclick="app.toggleTheme()">🌓 Theme</button>
-            <a href="/employees" class="btn btn-primary btn-sm">+ New Employee</a>
+          <div class="kanban-col">
+            <div class="kanban-header"><span>💬 HR Executive Round</span> <span class="badge badge-primary">1</span></div>
+            <div class="candidate-card">
+              <strong>Sophie Martin</strong>
+              <div style="font-size:12px; color:var(--text-muted); margin-top:2px;">Product Manager • 5 yrs exp</div>
+              <span class="badge badge-primary" style="margin-top:8px;">Offer Preparation</span>
+            </div>
           </div>
-        </header>
-      <div class="content-container">
-        <div class="card">
-          <div class="card-header">
-            <div class="card-title">Recruitment ATS & Pipeline</div>
-          </div>
-          <div id="module-container">
-            <p style="color:var(--text-secondary);">Enterprise Module Active. Connecting to backend services...</p>
+          <div class="kanban-col">
+            <div class="kanban-header"><span>🎉 Offer Accepted / Hired</span> <span class="badge badge-success">1</span></div>
+            <div class="candidate-card" style="border-color:var(--color-emerald-500);">
+              <strong>Liam Davies</strong>
+              <div style="font-size:12px; color:var(--text-muted); margin-top:2px;">Senior Frontend Lead</div>
+              <span class="badge badge-success" style="margin-top:8px;">Accepted • $155k</span>
+            </div>
           </div>
         </div>
       </div>
     </main>
   </div>
-
   <script src="/js/app.js"></script>
-  <script src="/js/charts.js"></script>
-  <script src="/js/recruitment.js"></script>
 </body>
 </html>
