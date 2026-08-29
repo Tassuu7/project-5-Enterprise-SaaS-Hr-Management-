@@ -35,7 +35,7 @@ app.use(appConfig.app.apiPrefix, apiRouter);
 
 // Frontend Page Routing
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'src/views/index.html'));
+  res.sendFile(path.join(__dirname, 'src/views/dashboard.html'));
 });
 
 app.get('/dashboard', (req, res) => {
