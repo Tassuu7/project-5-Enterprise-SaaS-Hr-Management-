@@ -150,7 +150,7 @@ def verify_all_requirements(metrics):
     has_proprietary = False
     if lic_path.exists():
         content = lic_path.read_text(encoding='utf-8')
-        if 'ENTERPRISE COMMERCIAL SOFTWARE LICENSE' in content and 'All Rights Reserved' in content:
+        if 'PROPRIETARY' in content and 'All Rights Reserved' in content:
             has_proprietary = True
     results['5_no_open_source_license'] = {
         'title': 'No Open Source License (Proprietary)',
