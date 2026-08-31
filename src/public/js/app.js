@@ -8,6 +8,19 @@ class WorkSphereApp {
     this.apiBase = '/api/v1';
     this.token = localStorage.getItem('worksphere_jwt') || null;
     this.currentUser = JSON.parse(localStorage.getItem('worksphere_user') || 'null');
+    
+    if (!this.currentUser) {
+      this.currentUser = {
+        id: 'usr_admin_01',
+        firstName: 'Alexander',
+        lastName: 'Sterling',
+        role: 'SUPER_ADMIN',
+        email: 'alexander.sterling@worksphere.corp',
+        avatarUrl: 'https://ui-avatars.com/api/?name=Alexander+Sterling&background=1E3A8A&color=fff',
+      };
+      localStorage.setItem('worksphere_user', JSON.stringify(this.currentUser));
+    }
+    
     this.init();
   }
 
