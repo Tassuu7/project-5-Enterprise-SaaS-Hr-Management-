@@ -11,9 +11,9 @@ const appConfig = {
     name: process.env.APP_NAME || 'WorkSphere Enterprise HRMS',
     version: '4.2.0',
     env: process.env.NODE_ENV || 'development',
-    port: parseInt(process.env.PORT, 10) || 3000,
+    port: parseInt(process.env.PORT, 10) || 5005,
     host: process.env.HOST || '127.0.0.1',
-    url: process.env.APP_URL || 'http://localhost:3000',
+    url: process.env.APP_URL || 'http://localhost:5005',
     apiPrefix: '/api/v1',
   },
   security: {

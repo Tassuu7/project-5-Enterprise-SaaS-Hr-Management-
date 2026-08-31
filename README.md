@@ -82,9 +82,10 @@ copy example.env .env
 ### 3. Launch Enterprise Server
 ```bash
 npm start
+# Server boots on http://localhost:5005 (or http://127.0.0.1:5005)
 ```
 The server will initialize the SQLite schema, run master database seeders, and start listening at:
-`http://localhost:3000`
+`http://localhost:5005`
 
 ### 4. Default Enterprise Credentials
 | Role | Email | Password |
@@ -93,6 +94,23 @@ The server will initialize the SQLite schema, run master database seeders, and s
 | **HR Director** | `eleanor.vance@worksphere.corp` | `Admin@123456` |
 | **Payroll Specialist** | `sophia.chen@worksphere.corp` | `Admin@123456` |
 | **Recruiter** | `david.kim@worksphere.corp` | `Admin@123456` |
+
+---
+
+## 🧭 Live Web Access & Navigation
+
+| Module | URL | Description |
+| :--- | :--- | :--- |
+| **Executive Dashboard** | `http://localhost:5005/` | Headcount KPIs, Dept Distribution Charts, Real-time Attendance |
+| **Employee Directory** | `http://localhost:5005/employees` | 360 Employee Profiles, New Hire Onboarding Modal, Department Filters |
+| **Org Hierarchy Tree** | `http://localhost:5005/orgchart` | Interactive Corporate Tree & Leadership Hierarchy |
+| **Time & Attendance** | `http://localhost:5005/attendance` | Real-time Punch Clock, Geofencing, Shift Schedules |
+| **Leaves & Absence** | `http://localhost:5005/leaves` | Leave Balances (CL/SL/PL), Application Form, Approval Workflow |
+| **Payroll Engine** | `http://localhost:5005/payroll` | Gross-to-Net Calculator, Tax Slabs (TDS/PF/ESI), Payslip Generator |
+| **Recruitment ATS** | `http://localhost:5005/recruitment` | Drag-and-drop Kanban Pipeline, Candidate Scorecards |
+| **Performance & OKRs** | `http://localhost:5005/performance` | 9-Box Talent Calibration Matrix, Goal Hierarchy |
+| **HR Service Desk** | `http://localhost:5005/helpdesk` | SLA Ticketing System, Category Routing, Priority Triage |
+| **Workforce Analytics** | `http://localhost:5005/analytics` | Headcount Forecasting, Gender Diversity & Turnover Heatmaps |
 
 ---
 
